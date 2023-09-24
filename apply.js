@@ -6,7 +6,7 @@ apply();
 async function apply() {
     var page = await getPage();
     await page.goto(
-        "https://comcast.wd5.myworkdayjobs.com/en-US/Comcast_Careers/job/Virtual/Software-Engineer-Intern--Data-ML-and-Algro_R371953"
+        "url"
     );
     await createAccount(page);
 }
