@@ -10,6 +10,10 @@ async function apply() {
     );
 
     await createAccount(page);
+
+    if (await selectorExists(page, 'div[data-automation-id="errorMessage"]')) {
+        await signIn(page);
+    }
 }
 
 async function getPage() {
@@ -52,4 +56,16 @@ async function selectorExists(page, selector) {
         return false;
     }
     return true;
+}
+
+async function signIn(page) {
+    console.log("Account already exists. Signing in");
+
+    await page.locator('button[data-automation-id="signInLink"]').click();
+
+    await page.locator('input[data-automation-id="email"]').fill(email);
+
+    await page.locator('input[data-automation-id="password"]').fill(password);
+
+    await page.locator('button[data-automation-id="signInSubmitButton"]').click({ delay: 400 });
 }
