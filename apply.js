@@ -6,12 +6,15 @@ apply();
 async function apply() {
     var page = await getPage();
     await page.goto(
-        "url"
+        // "url"
     );
+
     await createAccount(page);
 }
 
 async function getPage() {
+    console.log("Getting page");
+
     const browser = await puppeteer.launch({
         headless: false,
         defaultViewport: false,
@@ -21,6 +24,8 @@ async function getPage() {
 }
 
 async function createAccount(page) {
+    console.log("Creating account");
+
     await page.locator('a[data-automation-id="adventureButton"]').click();
 
     await page.locator('a[data-automation-id="applyManually"]').click();
@@ -32,10 +37,19 @@ async function createAccount(page) {
     await page.locator('input[data-automation-id="password"]').fill(password);
     await page.locator('input[data-automation-id="verifyPassword"]').fill(password);
 
-    const createAccountCheckbox = await page.$('input[data-automation-id="createAccountCheckbox"]');
-    if (createAccountCheckbox != null) {
-        await createAccountCheckbox.click();
+    const createAccountCheckbox = 'input[data-automation-id="createAccountCheckbox"]';
+    if (await selectorExists(page, createAccountCheckbox)) {
+        await page.click(createAccountCheckbox);
     }
 
     await page.locator('button[data-automation-id="createAccountSubmitButton"]').click();
+}
+
+async function selectorExists(page, selector) {
+    try {
+        await page.waitForSelector(selector, { timeout: 800 });
+    } catch (error) {
+        return false;
+    }
+    return true;
 }
