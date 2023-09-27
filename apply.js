@@ -1,6 +1,8 @@
 import { email, password, fullName, firstName, lastName, suffix, street, city, state, postalCode, phoneType, phoneNumber, school, degree, fieldOfStudy, gpa, startDate, endDate, resumeFilePath, linkedInLink, githubLink, gender, ethnicity, hispanicOrLatino, veteranStatus } from './information.js';
 import puppeteer from "puppeteer";
 
+const nextButton = 'button[data-automation-id="bottom-navigation-next-button"]';
+
 apply();
 
 async function apply() {
@@ -113,7 +115,7 @@ async function fillBasicInfo(page) {
     await page.keyboard.press('Enter');
     await page.locator('input[data-automation-id="phone-number"]').fill(phoneNumber);
 
-    await page.locator('button[data-automation-id="bottom-navigation-next-button"]').click();
+    await page.locator(nextButton).click();
 }
 
 async function fillExperience(page) {
@@ -162,7 +164,7 @@ async function fillExperience(page) {
     }
 
 
-    await page.locator('button[data-automation-id="bottom-navigation-next-button"]').click();
+    await page.locator(nextButton).click();
 }
 
 async function fillVoluntaryDisclosures(page) {
@@ -182,7 +184,7 @@ async function fillVoluntaryDisclosures(page) {
         await page.keyboard.type(hispanicOrLatino, { delay: 100 });
         await page.keyboard.type('Enter');
     }
-    
+
     await page.locator('button[data-automation-id="ethnicityDropdown"]').click();
     await page.keyboard.type(ethnicity, { delay: 100 });
     await page.keyboard.press('Enter');
@@ -196,7 +198,7 @@ async function fillVoluntaryDisclosures(page) {
 
     await page.locator('input[data-automation-id="agreementCheckbox"]').click();
 
-    await page.locator('button[data-automation-id="bottom-navigation-next-button"]').click();
+    await page.locator(nextButton).click();
 }
 
 async function fillSelfIdentify(page) {
@@ -209,5 +211,5 @@ async function fillSelfIdentify(page) {
 
     await page.locator('input[id="64cbff5f364f10000ae7a421cf210000"]').click();
 
-    await page.locator('button[data-automation-id="bottom-navigation-next-button"]').click();
+    await page.locator(nextButton).click();
 }
