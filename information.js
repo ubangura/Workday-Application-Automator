@@ -5,9 +5,18 @@ const lastName = "Me";
 const suffix = "Jr";
 const street = "1600 Amphitheatre Parkway";
 const city = "Mountain View"
-const state = "CA";
+const state = "California";
 const postalCode = "94043";
 const phoneType = "Mobile";
 const phoneNumber = "(650)-253-0000";
+const school = "Meta University";
+const degree = "Bachelors";
+const fieldOfStudy = "Computer Science";
+const gpa = "3.75";
+const startDate = "2022";
+const endDate = "2026";
+const resumeFilePath = "absolute_path";
+const linkedInLink = "https://www.linkedin.com/in/username/";
+const githubLink = "https://github.com/username";
 
-export { email, password, firstName, lastName, suffix, street, city, state, postalCode, phoneType, phoneNumber };
+export { email, password, firstName, lastName, suffix, street, city, state, postalCode, phoneType, phoneNumber, school, degree, fieldOfStudy, gpa, startDate, endDate, resumeFilePath, linkedInLink, githubLink};

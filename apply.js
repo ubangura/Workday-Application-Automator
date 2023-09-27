@@ -1,4 +1,4 @@
-import { email, password, firstName, lastName, suffix, street, city, state, postalCode, phoneType, phoneNumber } from './information.js';
+import { email, password, firstName, lastName, suffix, street, city, state, postalCode, phoneType, phoneNumber, school, degree, fieldOfStudy, gpa, startDate, endDate, resumeFilePath, linkedInLink, githubLink } from './information.js';
 import puppeteer from "puppeteer";
 
 apply();
@@ -16,6 +16,10 @@ async function apply() {
     }
 
     await fillBasicInfo(page);
+
+    await page.waitForSelector('div[data-automation-id="myExperiencePage"]', { timeout: 0 });
+
+    await fillExperience(page);
 }
 
 async function getPage() {
@@ -77,6 +81,7 @@ async function fillBasicInfo(page) {
 
     await page.locator('div[data-automation-id="previousWorker"] input[id="2"]').click();
 
+    /* Name */
     await page.locator('input[data-automation-id="legalNameSection_firstName"]').fill(firstName);
     await page.locator('input[data-automation-id="legalNameSection_lastName"]').fill(lastName);
     const suffixDropdown = 'button[data-automation-id="legalNameSection_social"]';
@@ -86,6 +91,7 @@ async function fillBasicInfo(page) {
         await page.keyboard.press('Enter');
     }
 
+    /* Address */
     await page.locator('input[data-automation-id="addressSection_addressLine1"]').fill(street);
     await page.locator('input[data-automation-id="addressSection_city"]').fill(city);
     await page.locator('button[data-automation-id="addressSection_countryRegion"]').click();
@@ -93,10 +99,59 @@ async function fillBasicInfo(page) {
     await page.keyboard.press('Enter');
     await page.locator('input[data-automation-id="addressSection_postalCode"]').fill(postalCode);
 
+    /* Phone */
     await page.locator('button[data-automation-id="phone-device-type"]').click();
-    await page.keyboard.type(phoneType, {delay: 100});
+    await page.keyboard.type(phoneType, { delay: 100 });
     await page.keyboard.press('Enter');
     await page.locator('input[data-automation-id="phone-number"]').fill(phoneNumber);
+
+    await page.locator('button[data-automation-id="bottom-navigation-next-button"]').click();
+}
+
+async function fillExperience(page) {
+    console.log("Filling experience");
+
+    /* Education */
+    const addFirstEducation = 'div[data-automation-id="educationSection"] button[data-automation-id="Add"]';
+    if (await selectorExists(page, addFirstEducation)) {
+        await page.click(addFirstEducation);
+    }
+
+    await page.locator('input[data-automation-id="school"]').fill(school);
+
+    await page.locator('button[data-automation-id="degree"]').click();
+    await page.keyboard.type(degree, { delay: 100 });
+    await page.keyboard.press('Enter');
+
+    await page.locator('div[data-automation-id="formField-field-of-study"] input').fill(fieldOfStudy);
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Enter', { delay: 1000 });
+
+    await page.locator('input[data-automation-id="gpa"]').fill(gpa);
+
+    const startDateInput = 'div[data-automation-id="formField-startDate"] input';
+    if (await selectorExists(page, startDateInput)) {
+        await page.locator(startDateInput).fill(startDate);
+        await page.locator('div[data-automation-id="formField-endDate"] input').fill(endDate);
+    }
+
+    /* Resume */
+    const uploadElementHandle = await page.$('input[data-automation-id="file-upload-input-ref"]');
+    await uploadElementHandle.uploadFile(resumeFilePath);
+
+    /* Additional Websites - LinkedIn & GitHub */
+    const linkedInInput = 'input[data-automation-id="linkedinQuestion"]';
+
+    if (await selectorExists(page, linkedInInput)) {
+        await page.locator(linkedInInput).fill(linkedInLink);
+        await page.locator('div[data-automation-id="websiteSection"] button[data-automation-id="Add"]').click();
+        await page.locator('div[data-automation-id="websitePanelSet-1"] input').fill(githubLink);
+    } else {
+        await page.locator('div[data-automation-id="websiteSection"] button[data-automation-id="Add"]').click();
+        await page.locator('div[data-automation-id="websitePanelSet-1"] input').fill(linkedInLink);
+        await page.locator('div[data-automation-id="websiteSection"] button[data-automation-id="Add Another"]').click()
+        await page.locator('div[data-automation-id="websitePanelSet-2"] input').fill(githubLink);
+    }
 
     await page.locator('button[data-automation-id="bottom-navigation-next-button"]').click();
 }
