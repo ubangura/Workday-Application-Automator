@@ -33,7 +33,7 @@ In the newly created directory, run the command to install Puppeteer.
 npm i puppeteer
 ```
 
-Then simply replace the default information in information.js with your own and run the command to start the automation script.
+Then simply replace the default information in information.js with your own, add the URL to a job posting on Workday in apply.js, and run the command to start the automation script.
 ```bash
 node apply.js
 ```
