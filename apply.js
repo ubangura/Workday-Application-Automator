@@ -1,4 +1,4 @@
-import { email, password, firstName, lastName, suffix, street, city, state, postalCode, phoneType, phoneNumber, school, degree, fieldOfStudy, gpa, startDate, endDate, resumeFilePath, linkedInLink, githubLink, gender, ethnicity, hispanicOrLatino, veteranStatus } from './information.js';
+import { email, password, fullName, firstName, lastName, suffix, street, city, state, postalCode, phoneType, phoneNumber, school, degree, fieldOfStudy, gpa, startDate, endDate, resumeFilePath, linkedInLink, githubLink, gender, ethnicity, hispanicOrLatino, veteranStatus } from './information.js';
 import puppeteer from "puppeteer";
 
 apply();
@@ -24,6 +24,10 @@ async function apply() {
     await page.waitForSelector('div[data-automation-id="voluntaryDisclosuresPage"]', { timeout: 0 });
 
     await fillVoluntaryDisclosures(page);
+
+    await page.waitForSelector('div[data-automation-id="selfIdentificationPage"]', { timeout: 0 });
+
+    await fillSelfIdentify(page);
 }
 
 async function getPage() {
@@ -178,7 +182,7 @@ async function fillVoluntaryDisclosures(page) {
         await page.keyboard.type(hispanicOrLatino, { delay: 100 });
         await page.keyboard.type('Enter');
     }
-
+    
     await page.locator('button[data-automation-id="ethnicityDropdown"]').click();
     await page.keyboard.type(ethnicity, { delay: 100 });
     await page.keyboard.press('Enter');
@@ -191,6 +195,19 @@ async function fillVoluntaryDisclosures(page) {
     await page.keyboard.press('Enter');
 
     await page.locator('input[data-automation-id="agreementCheckbox"]').click();
+
+    await page.locator('button[data-automation-id="bottom-navigation-next-button"]').click();
+}
+
+async function fillSelfIdentify(page) {
+    console.log("Filling disability info");
+
+    await page.locator('input[data-automation-id="name"]').fill(fullName);
+
+    await page.locator('div[data-automation-id="dateIcon"]').click();
+    await page.locator('button[data-automation-id="datePickerSelectedToday"]').click();
+
+    await page.locator('input[id="64cbff5f364f10000ae7a421cf210000"]').click();
 
     await page.locator('button[data-automation-id="bottom-navigation-next-button"]').click();
 }
