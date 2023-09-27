@@ -1,4 +1,4 @@
-import { email, password, firstName, lastName, suffix, street, city, state, postalCode, phoneType, phoneNumber, school, degree, fieldOfStudy, gpa, startDate, endDate, resumeFilePath, linkedInLink, githubLink } from './information.js';
+import { email, password, firstName, lastName, suffix, street, city, state, postalCode, phoneType, phoneNumber, school, degree, fieldOfStudy, gpa, startDate, endDate, resumeFilePath, linkedInLink, githubLink, gender, ethnicity, hispanicOrLatino, veteranStatus } from './information.js';
 import puppeteer from "puppeteer";
 
 apply();
@@ -20,6 +20,10 @@ async function apply() {
     await page.waitForSelector('div[data-automation-id="myExperiencePage"]', { timeout: 0 });
 
     await fillExperience(page);
+
+    await page.waitForSelector('div[data-automation-id="voluntaryDisclosuresPage"]', { timeout: 0 });
+
+    await fillVoluntaryDisclosures(page);
 }
 
 async function getPage() {
@@ -119,15 +123,15 @@ async function fillExperience(page) {
 
     await page.locator('input[data-automation-id="school"]').fill(school);
 
-    await page.locator('button[data-automation-id="degree"]').click();
-    await page.keyboard.type(degree, { delay: 100 });
-    await page.keyboard.press('Enter');
-
     await page.locator('div[data-automation-id="formField-field-of-study"] input').fill(fieldOfStudy);
     await page.keyboard.press('Enter');
     await page.keyboard.press('Enter', { delay: 1000 });
 
     await page.locator('input[data-automation-id="gpa"]').fill(gpa);
+
+    await page.locator('button[data-automation-id="degree"]').click();
+    await page.keyboard.type(degree, { delay: 100 });
+    await page.keyboard.press('Enter');
 
     const startDateInput = 'div[data-automation-id="formField-startDate"] input';
     if (await selectorExists(page, startDateInput)) {
@@ -152,6 +156,41 @@ async function fillExperience(page) {
         await page.locator('div[data-automation-id="websiteSection"] button[data-automation-id="Add Another"]').click()
         await page.locator('div[data-automation-id="websitePanelSet-2"] input').fill(githubLink);
     }
+
+
+    await page.locator('button[data-automation-id="bottom-navigation-next-button"]').click();
+}
+
+async function fillVoluntaryDisclosures(page) {
+    console.log("Filling voluntary disclosure info");
+
+    /* Gender */
+    await page.locator('button[data-automation-id="gender"]').click();
+    await page.keyboard.type(gender, { delay: 100 });
+    await page.keyboard.press('Enter');
+
+    await new Promise(r => setTimeout(r, 200));
+
+    /* Ethnicity */
+    const hispanicLatinoDropdown = 'button[data-automation-id="hispanicOrLatino"]';
+    if (await selectorExists(hispanicLatinoDropdown)) {
+        await page.click(hispanicLatinoDropdown);
+        await page.keyboard.type(hispanicOrLatino, { delay: 100 });
+        await page.keyboard.type('Enter');
+    }
+
+    await page.locator('button[data-automation-id="ethnicityDropdown"]').click();
+    await page.keyboard.type(ethnicity, { delay: 100 });
+    await page.keyboard.press('Enter');
+
+    await new Promise(r => setTimeout(r, 200));
+
+    /* Veteran Status */
+    await page.locator('button[data-automation-id="veteranStatus"]').click();
+    await page.keyboard.type(veteranStatus, { delay: 100 });
+    await page.keyboard.press('Enter');
+
+    await page.locator('input[data-automation-id="agreementCheckbox"]').click();
 
     await page.locator('button[data-automation-id="bottom-navigation-next-button"]').click();
 }
