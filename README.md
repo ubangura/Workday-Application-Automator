@@ -12,11 +12,31 @@
   </ul>
 </details>
 
+---
+
 <!-- Motivation -->
 <h2 id="motivation"> 💡 Motivation</h2>
 
+The search for software engineering internships can be a time-consuming process. The first step to getting an internship is the application and many companies opt to use the Workday system for application portals. 😬
+
+> <!-- Workday Application Issues -->
+<details open="open">
+  <summary> ❗ Workday Application Issues</summary>
+  <ul>
+    <li>Need to create an account for each company</li>
+    <li>Resume autofill struggles with proper formatting & auto-filling some information </li>
+    <li>Inability to save answers to questions regarding gender, ethnicity, education, etc., even if your answer won't ever change</li>
+  </ul>
+</details>
+
+Each application can take about 2-3 minutes to fill out, because of these issues.
+
+---
+
 <!-- OVERVIEW -->
 <h2 id="overview"> ☁️ Overview</h2>
+
+---
 
 <!-- Getting Started Guide -->
 <h2 id="getting-started-guide"> 🛠️ Getting Started Guide</h2>
