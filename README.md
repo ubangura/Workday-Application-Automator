@@ -36,6 +36,8 @@ Each application can take about 2-3 minutes to fill out, because of these issues
 <!-- OVERVIEW -->
 <h2 id="overview"> ☁️ Overview</h2>
 
+https://github.com/ubangura/Workday-Application-Automator/assets/110050333/758743e3-fa8b-4c1a-9400-4da079f6d710
+
 ---
 
 <!-- Getting Started Guide -->
