@@ -1,73 +1,51 @@
 # Workday Application Automator ⚡
-> Automates repetitive Workday applications by filling in constant information across most portals, including basic contact, education, and demographic information.
 
-> <!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary> 📖 Table of Contents</summary>
-  <ul>
-    <li><a href="#motivation"> Motivation</a></li>
-    <li><a href="#overview"> Overview</a></li>
-    <li><a href="#getting-started-guide"> Getting Started Guide</a>
-    </li>
-  </ul>
-</details>
+Automates repetitive Workday applications by filling in constant information across most portals, including basic contact, education, and demographic information.
 
----
+## Table of Contents
 
-<!-- Motivation -->
-<h2 id="motivation"> 💡 Motivation</h2>
+- [Motivation](#motivation)
+- [Overview](#overview)
+- [Getting Started Guide](#getting-started-guide)
 
-The search for software engineering internships can be a time-consuming process. The first step to getting an internship is the application and many companies opt to use the Workday system for application portals. 😬
+## Motivation
 
-> <!-- Workday Application Issues -->
-<details open="open">
-  <summary> ❗ Workday Application Issues</summary>
-  <ul>
-    <li>Need to create an account for each company</li>
-    <li>Resume autofill struggles with proper formatting & auto-filling some information </li>
-    <li>Inability to save answers to questions regarding gender, ethnicity, education, etc., even if your answer won't ever change</li>
-  </ul>
-</details>
+The search for software engineering internships can be a time-consuming process. The first step to getting an internship is the application, and many companies opt to use the Workday system for application portals. 😬
 
-Each application can take about 2-3 minutes to fill out, because of these issues.
+### Workday application issues
 
----
+- Need to create an account for each company
+- Resume autofill struggles with proper formatting and auto-filling some information
+- Inability to save answers to questions regarding gender, ethnicity, education, etc., even if your answer won't ever change
 
-<!-- OVERVIEW -->
-<h2 id="overview"> ☁️ Overview</h2>
+Each application can take about 2–3 minutes to fill out because of these issues.
+
+## Overview
 
 https://github.com/ubangura/Workday-Application-Automator/assets/110050333/758743e3-fa8b-4c1a-9400-4da079f6d710
 
----
+## Getting Started Guide
 
-<!-- Getting Started Guide -->
-<h2 id="getting-started-guide"> 🛠️ Getting Started Guide</h2>
-
-> Note: You will need Node.js installed on your local computer. If you need to install, you can do so at [Download Node.js](https://nodejs.dev/en/download/).
+> Note: You will need Node.js installed on your local computer. If you need to install it, you can do so at [Download Node.js](https://nodejs.dev/en/download/).
 
 Run the command below in the terminal to copy the code from the repository to your local computer.
+
 ```bash
 git clone https://github.com/ubangura/Workday-Application-Automator.git
 ```
 
-In the newly created directory, run the command to install Puppeteer.
+In the newly created directory, install Puppeteer:
+
 ```bash
-npm i puppeteer
+npm install puppeteer
 ```
 
-Then simply replace the default information in information.js with your own, add the URL to a job posting on Workday in apply.js, and run the command to start the automation script.
+Then replace the default information in `information.js` with your own data, add a Workday job posting URL to `apply.js`, and run the automation script:
+
 ```bash
 node apply.js
 ```
 
----
-
 ## Star History
 
-<a href="https://www.star-history.com/?repos=ubangura%2FWorkday-Application-Automator&type=date&legend=bottom-right">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ubangura/Workday-Application-Automator&type=date&theme=dark&legend=bottom-right" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=ubangura/Workday-Application-Automator&type=date&legend=bottom-right" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=ubangura/Workday-Application-Automator&type=date&legend=bottom-right" />
- </picture>
-</a>
+[![Star History Chart](https://api.star-history.com/chart?repos=ubangura/Workday-Application-Automator&type=date&legend=bottom-right)](https://www.star-history.com/?repos=ubangura%2FWorkday-Application-Automator&type=date&legend=bottom-right)
