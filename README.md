@@ -3,7 +3,7 @@
 > **This project has been superseded.**
 > I am rebuilding this from scratch as a proper Chrome extension — no Node.js, no terminal, no manual config.
 >
-> **→ [snapfill.pages.dev](https://snapfill.pages.dev) — join the waitlist**
+> **→ [snapfill.pages.dev](https://snapfill.pages.dev/?utm_source=github) — join the waitlist**
 
 ---
 
