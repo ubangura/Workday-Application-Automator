@@ -1,6 +1,15 @@
 # Workday Application Automator ⚡
 
+> **This project has been superseded.**
+> I am rebuilding this from scratch as a proper Chrome extension — no Node.js, no terminal, no manual config.
+>
+> **→ [snapfill.pages.dev](https://snapfill.pages.dev) — join the waitlist**
+
+---
+
 Automates repetitive Workday applications by filling in constant information across most portals, including basic contact, education, and demographic information.
+
+> **Note:** This repository is archived and no longer maintained. It still works but requires manual setup and only covers basic fields. SnapFill handles the full application automatically.
 
 ## Table of Contents
 
